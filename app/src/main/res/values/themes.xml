@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Material" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Material" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -12,5 +12,50 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="TestStyleOne" parent="Theme.Material">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#F44336</item>
+        <item name="colorPrimaryDark">#E91E63</item>
+        <item name="android:textColorPrimary">#FFEB3B</item>
+        <item name="android:windowBackground">#00BCD4</item>
+        <item name="android:navigationBarColor">#F44336</item>
+    </style>
+
+    <style name="TestStyleTwo" parent="Theme.Material">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#E42618</item>
+        <item name="colorPrimaryDark">#1E21E9</item>
+        <item name="android:textColorPrimary">#3BFFFF</item>
+        <item name="android:windowBackground">#D00071D4</item>
+        <item name="android:navigationBarColor">#F41707</item>
+    </style>
+
+    <style name="TestStyleThree" parent="Theme.Material">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#C10E45EF</item>
+        <item name="colorPrimaryDark">#F60B5B</item>
+        <item name="android:textColorPrimary">#9AE194</item>
+        <item name="android:windowBackground">#F1094A</item>
+        <item name="android:navigationBarColor">#082CAF</item>
+    </style>
+
+    <style name="TestStyleFour" parent="Theme.Material">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#D40BF8</item>
+        <item name="colorPrimaryDark">#15EDCD</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:windowBackground">#11D6EF</item>
+        <item name="android:navigationBarColor">#790593</item>
+    </style>
+
+    <style name="TestStyleFive" parent="Theme.Material">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#009688</item>
+        <item name="colorPrimaryDark">#4CAF50</item>
+        <item name="android:textColorPrimary">#8BC34A</item>
+        <item name="android:windowBackground">#CDDC39</item>
+        <item name="android:navigationBarColor">#FFEB3B</item>
     </style>
 </resources>

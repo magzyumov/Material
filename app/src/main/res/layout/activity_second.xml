@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.second.SecondActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonThemeOne"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:elevation="5dp"
+        android:text="@string/button_theme_1"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonThemeTwo"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonThemeTwo"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:elevation="10dp"
+        android:text="@string/button_theme_2"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonThemeOne"
+        app:layout_constraintBottom_toTopOf="@+id/buttonThemeThree"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonThemeThree"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:elevation="15dp"
+        android:text="@string/button_theme_3"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonThemeTwo"
+        app:layout_constraintBottom_toTopOf="@+id/buttonThemeFour"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonThemeFour"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:elevation="20dp"
+        android:text="@string/button_theme_4"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonThemeThree"
+        app:layout_constraintBottom_toTopOf="@+id/buttonThemeFive"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonThemeFive"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:elevation="25dp"
+        android:text="@string/button_theme_5"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonThemeFour"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
