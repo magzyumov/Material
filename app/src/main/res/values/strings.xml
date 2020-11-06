@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Material</string>
+
+    <!-- Test strings -->
+    <string name="button_theme_1">Theme #1</string>
+    <string name="button_theme_2">Theme #2</string>
+    <string name="button_theme_3">Theme #3</string>
+    <string name="button_theme_4">Theme #4</string>
+    <string name="button_theme_5">Theme #5</string>
+
+    <string name="button_go_to_colors">Colors</string>
+
 </resources>
