@@ -10,4 +10,6 @@
 
     <string name="button_go_to_colors">Colors</string>
 
+    <string name="menu_settings">Settings</string>
+
 </resources>

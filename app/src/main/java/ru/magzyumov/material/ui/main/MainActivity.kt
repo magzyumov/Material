@@ -2,7 +2,8 @@ package ru.magzyumov.material.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.google.android.material.appbar.MaterialToolbar
@@ -27,7 +28,19 @@ class MainActivity: BaseActivity(), MainInteraction {
         toolbar.title = title
     }
 
-    override fun openSecondActivity() {
-        startActivity(Intent(this, SecondActivity::class.java))
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menuSettings -> {
+                showSnackBar("Open Settings?") {
+                    startActivity(Intent(this@MainActivity, SecondActivity::class.java))
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
