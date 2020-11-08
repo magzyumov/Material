@@ -25,5 +25,5 @@ class SnackBarHelper {
             it.setAction("YES", action)
             it.show()
         }
-  }
+    }
 }

@@ -10,7 +10,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import ru.magzyumov.material.R
 import ru.magzyumov.material.databinding.ActivityMainBinding
 import ru.magzyumov.material.ui.base.BaseActivity
-import ru.magzyumov.material.ui.second.SecondActivity
+import ru.magzyumov.material.ui.settings.SettingsActivity
 
 class MainActivity: BaseActivity(), MainInteraction {
     override val binding by viewBinding(ActivityMainBinding::inflate)
@@ -37,7 +37,7 @@ class MainActivity: BaseActivity(), MainInteraction {
         when(item.itemId){
             R.id.menuSettings -> {
                 showSnackBar("Open Settings?") {
-                    startActivity(Intent(this@MainActivity, SecondActivity::class.java))
+                    startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
                 }
             }
         }
