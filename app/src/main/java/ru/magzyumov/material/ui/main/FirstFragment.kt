@@ -70,7 +70,7 @@ class FirstFragment: BaseFragment(R.layout.fragment_first), ImageAdapter.Interac
         val storageDir: File? = application.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         storageDir?.let {fileList ->
             fileList.listFiles().forEach {file ->
-                val photoURI: String = file.absolutePath
+                val photoURI: String = Uri.fromFile(file).toString()
                 list.add(photoURI)
             }
             imagesList = list
@@ -83,7 +83,7 @@ class FirstFragment: BaseFragment(R.layout.fragment_first), ImageAdapter.Interac
             imagesAdapter.swap(imagesList)
             layoutManager = GridLayoutManager(
                 this@FirstFragment.requireContext(),
-                1,
+                3,
                 GridLayoutManager.VERTICAL,
                 false
             )
