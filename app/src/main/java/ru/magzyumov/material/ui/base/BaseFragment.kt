@@ -15,8 +15,9 @@ import ru.magzyumov.material.utils.FragmentViewBindingDelegate
 
 abstract class BaseFragment(@LayoutRes val contentLayoutId: Int): DaggerFragment() {
 
-    protected lateinit var fragmentInteraction: MainInteraction
     abstract val binding: ViewBinding
+
+    protected lateinit var fragmentInteraction: MainInteraction
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -28,11 +29,8 @@ abstract class BaseFragment(@LayoutRes val contentLayoutId: Int): DaggerFragment
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return if (contentLayoutId != 0) {
-            inflater.inflate(contentLayoutId, container, false)
-        } else null
+        return inflater.inflate(contentLayoutId, container, false)
     }
-
 
     protected fun <T: ViewBinding> Fragment.viewBinding(viewBindingFactory: (View) -> T) =
         FragmentViewBindingDelegate(this, viewBindingFactory)

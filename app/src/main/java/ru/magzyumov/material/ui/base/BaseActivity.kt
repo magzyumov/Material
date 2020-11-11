@@ -13,16 +13,12 @@ abstract class BaseActivity: DaggerAppCompatActivity() {
     abstract val binding: ViewBinding
 
     @Inject
-    lateinit var baseService: BaseServices
+    protected lateinit var baseService: BaseServices
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(baseService.themeHelper.getCurrentTheme())
         setContentView(binding.root)
-    }
-
-    protected fun showSnackBar(message: String, action: (View) -> Unit){
-        baseService.snackBarHelper.show(this, message, action)
     }
 
     protected fun recreateActivity(){

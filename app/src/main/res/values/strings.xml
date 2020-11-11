@@ -15,4 +15,13 @@
     <string name="hint_edit_text">Введите текст:</string>
     <string name="hint_edit_error">Ошибка</string>
 
+
+    <!-- Drawer menu strings -->
+    <string name="menu_home">Главная</string>
+    <string name="menu_theme">Выбор темы</string>
+
+    <!-- Common drawer string -->
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
 </resources>

@@ -13,14 +13,8 @@ import ru.magzyumov.material.ui.base.BaseActivity
 class SettingsActivity : BaseActivity() {
     override val binding by viewBinding(ActivitySettingsBinding::inflate)
 
-    private val MIN_TEXT_LENGTH = 8
-    private val EMPTY_STRING = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding.textInputLayout.hint = getString(R.string.hint_edit_text)
-        binding.editText.setOnEditorActionListener(clickListener)
 
         binding.buttonThemeOne.setOnClickListener {
             baseService.preferenceHelper.setIntPreference(THEME, 1)
@@ -35,27 +29,4 @@ class SettingsActivity : BaseActivity() {
             recreateActivity()
         }
     }
-
-    private fun shouldShowError(): Boolean {
-        val textLength: Int = binding.editText.text?.length ?: 0
-        return textLength in 1 until MIN_TEXT_LENGTH
-    }
-
-    private fun showError() {
-        binding.textInputLayout.error = getString(R.string.hint_edit_error)
-    }
-
-    private fun hideError() {
-        binding.textInputLayout.error = EMPTY_STRING
-    }
-
-    private val clickListener: TextView.OnEditorActionListener = (TextView.OnEditorActionListener { v, actionId, event ->
-        Log.e("!!!","QWEWQ")
-        if (actionId == EditorInfo.IME_ACTION_GO && shouldShowError()){
-            showError()
-        } else {
-            hideError()
-        }
-        true
-    })
 }
