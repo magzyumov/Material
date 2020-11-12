@@ -54,7 +54,7 @@ class ImageAdapter(
 
         fun bind(image: String) {
 
-            binding.imageViewMain.setImageURI(Uri.parse(image))
+            loadImage(binding.imageViewMain, image)
 
             binding.buttonShare.setOnClickListener{
                 interaction.onShareSelected(image)
@@ -89,19 +89,11 @@ class ImageAdapter(
         fun onLikeSelected(position: Int, item: String)
     }
 
-    companion object {
-        fun loadImage(view: ImageView, image: String) {
-            val fileNeed: File = File(image)
-            Log.e("FILE", image)
-            Glide.with(view.context)
-                .load(fileNeed)
-                //.centerCrop()
-                //.fitCenter()
-                //.diskCacheStrategy(DiskCacheStrategy.DATA)
-                //.placeholder(R.drawable.image_loading)
-                //.error(R.drawable.image_error)
+    private fun loadImage(view: ImageView, image: String) {
+        Glide.with(view.context)
+                .load(Uri.parse(image))
+                .centerCrop()
+                .fitCenter()
                 .into(view)
-
-        }
     }
 }

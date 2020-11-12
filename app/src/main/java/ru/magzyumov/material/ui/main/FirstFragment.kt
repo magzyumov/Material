@@ -1,11 +1,11 @@
 package ru.magzyumov.material.ui.main
 
 import android.app.Activity.RESULT_OK
-import android.app.Application
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.*
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
@@ -40,7 +40,7 @@ class FirstFragment: BaseFragment(R.layout.fragment_first), ImageAdapter.Interac
     lateinit var storageHelper: StorageHelper
 
     @Inject
-    lateinit var viewmodelProviderFactory: ViewModelProviderFactory
+    lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,7 +58,7 @@ class FirstFragment: BaseFragment(R.layout.fragment_first), ImageAdapter.Interac
 
     private fun setupViewModel() {
         firstViewModel =
-                ViewModelProvider(this, viewmodelProviderFactory).get(FirstViewModel::class.java)
+                ViewModelProvider(this, viewModelProviderFactory).get(FirstViewModel::class.java)
     }
 
     private fun observerLiveData() {
@@ -68,6 +68,7 @@ class FirstFragment: BaseFragment(R.layout.fragment_first), ImageAdapter.Interac
                 imagesAdapter.swap(it)
             }
         })
+        firstViewModel.updateImageList()
     }
 
     private fun initRecyclerView() {
@@ -90,36 +91,20 @@ class FirstFragment: BaseFragment(R.layout.fragment_first), ImageAdapter.Interac
     private fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(requireActivity().packageManager)?.also {
-                // Create the File where the photo should go
-                val photoFile: File? = try {
-                    storageHelper.createImageFile()
-                } catch (ex: IOException) {
-                    null
-                }
-                // Continue only if the File was successfully created
-                photoFile?.also {photo ->
-                    val photoURI: Uri = FileProvider.getUriForFile(
-                            requireContext(),
-                            BuildConfig.APPLICATION_ID + ".fileprovider",
-                            photo
-                    )
-
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                firstViewModel.createImageFile()?.let {
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, it)
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
                 }
             }
         }
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-            data?.let {
-                snackBarHelper.show(binding.root, "Picture added")
-                firstViewModel.updateImageList()
-            }
+            snackBarHelper.show(binding.root, "Picture added")
+            firstViewModel.updateImageList()
         }
     }
 
@@ -153,7 +138,7 @@ class FirstFragment: BaseFragment(R.layout.fragment_first), ImageAdapter.Interac
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-                //noteViewModel.delete(allNotes.get(position))
+                firstViewModel.deleteImage(imagesList[position])
             }
         }
     }
