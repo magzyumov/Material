@@ -2,13 +2,7 @@ package ru.magzyumov.material.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Message
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -18,7 +12,6 @@ import com.google.android.material.navigation.NavigationView
 import ru.magzyumov.material.R
 import ru.magzyumov.material.databinding.ActivityMainBinding
 import ru.magzyumov.material.ui.base.BaseActivity
-import ru.magzyumov.material.ui.settings.SettingsActivity
 
 class MainActivity: BaseActivity(), MainInteraction {
     override val binding by viewBinding(ActivityMainBinding::inflate)

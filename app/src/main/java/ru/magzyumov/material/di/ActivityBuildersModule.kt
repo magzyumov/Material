@@ -11,7 +11,7 @@ import ru.magzyumov.material.ui.settings.SettingsActivity
 @Module
 abstract class ActivityBuildersModule {
 
-    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class, ViewModelModule::class])
     abstract fun contributeMainActivity(): MainActivity
 
     @ContributesAndroidInjector(modules = [])

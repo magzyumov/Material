@@ -16,4 +16,10 @@ interface Constants {
             const val REQUEST_TAKE_PHOTO = 3
         }
     }
+
+    interface StringPattern {
+        companion object {
+            const val TIMESTAMP_PATTERN = "yyyyMMdd_HHmmss"
+        }
+    }
 }

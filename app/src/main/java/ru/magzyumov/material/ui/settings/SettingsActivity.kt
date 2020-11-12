@@ -17,15 +17,15 @@ class SettingsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         binding.buttonThemeOne.setOnClickListener {
-            baseService.preferenceHelper.setIntPreference(THEME, 1)
+            preferenceHelper.setIntPreference(THEME, 1)
             recreateActivity()
         }
         binding.buttonThemeTwo.setOnClickListener {
-            baseService.preferenceHelper.setIntPreference(THEME, 2)
+            preferenceHelper.setIntPreference(THEME, 2)
             recreateActivity()
         }
         binding.buttonThemeThree.setOnClickListener {
-            baseService.preferenceHelper.setIntPreference(THEME, 3)
+            preferenceHelper.setIntPreference(THEME, 3)
             recreateActivity()
         }
     }
