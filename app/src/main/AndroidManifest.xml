@@ -4,7 +4,7 @@
 
     <queries>
         <intent>
-            <action android:name="android.media.action.ACTION_IMAGE_CAPTURE" />
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
     </queries>
 
