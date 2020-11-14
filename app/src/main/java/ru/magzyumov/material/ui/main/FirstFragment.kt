@@ -2,32 +2,26 @@ package ru.magzyumov.material.ui.main
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.*
-import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import ru.magzyumov.material.BuildConfig
 import ru.magzyumov.material.R
 import ru.magzyumov.material.common.Constants.RequestCode.Companion.REQUEST_TAKE_PHOTO
 import ru.magzyumov.material.common.helpers.SnackBarHelper
 import ru.magzyumov.material.common.helpers.StorageHelper
-import ru.magzyumov.material.databinding.FragmentFirstBinding
+import ru.magzyumov.material.databinding.FragmentMainBinding
 import ru.magzyumov.material.ui.base.BaseFragment
 import ru.magzyumov.material.utils.ViewModelProviderFactory
-import java.io.File
-import java.io.IOException
 import javax.inject.Inject
 
 
-class FirstFragment: BaseFragment(R.layout.fragment_first), ImageAdapter.Interaction{
-    override val binding by viewBinding(FragmentFirstBinding::bind)
+class FirstFragment: BaseFragment(R.layout.fragment_main), ImageAdapter.Interaction{
+    override val binding by viewBinding(FragmentMainBinding::bind)
 
     private var imagesList: List<String> = arrayListOf()
     private lateinit var imagesAdapter: ImageAdapter
