@@ -9,19 +9,6 @@
     android:layout_marginTop="?attr/actionBarSize"
     >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewMain"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        android:layout_marginStart="@dimen/common_horizontal_margin"
-        android:layout_marginEnd="@dimen/common_horizontal_margin"
-        tools:listitem="@layout/item_image"
-        tools:itemCount="20"
-        app:spanCount="3"
-        android:visibility="gone"
-        />
-
     <ru.magzyumov.material.ui.custom_view.AutofitRecyclerView
         android:id="@+id/recyclerViewAuto"
         android:layout_width="match_parent"

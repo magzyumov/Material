@@ -74,9 +74,8 @@ class FirstFragment: BaseFragment(R.layout.fragment_main), ImageAdapter.Interact
             swipe.attachToRecyclerView(binding.recyclerViewAuto)
         }
 
-
         val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(binding.recyclerViewMain)
+        snapHelper.attachToRecyclerView(binding.recyclerViewAuto)
     }
 
     private fun dispatchTakePictureIntent() {
