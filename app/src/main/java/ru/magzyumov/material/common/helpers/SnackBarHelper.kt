@@ -26,4 +26,21 @@ class SnackBarHelper {
             it.show()
         }
     }
+
+    fun show(
+            view: View,
+            message: String
+    ) {
+
+        messageSnackBar = Snackbar.make(
+                view,
+                message,
+                Snackbar.LENGTH_LONG
+        )
+
+        messageSnackBar?.let {
+            it.view.setBackgroundColor(-0x40cdcdce)
+            it.show()
+        }
+    }
 }

@@ -2,27 +2,26 @@ package ru.magzyumov.material.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import dagger.android.support.DaggerAppCompatActivity
-import ru.magzyumov.material.di.services.BaseServices
+import ru.magzyumov.material.common.helpers.PreferenceHelper
+import ru.magzyumov.material.common.helpers.ThemeHelper
 import javax.inject.Inject
 
 abstract class BaseActivity: DaggerAppCompatActivity() {
     abstract val binding: ViewBinding
 
     @Inject
-    lateinit var baseService: BaseServices
+    protected lateinit var themeHelper: ThemeHelper
+
+    @Inject
+    protected lateinit var preferenceHelper: PreferenceHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(baseService.themeHelper.getCurrentTheme())
+        setTheme(themeHelper.getCurrentTheme())
         setContentView(binding.root)
-    }
-
-    protected fun showSnackBar(message: String, action: (View) -> Unit){
-        baseService.snackBarHelper.show(this, message, action)
     }
 
     protected fun recreateActivity(){

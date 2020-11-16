@@ -2,12 +2,20 @@
 <navigation
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/nav_home">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/nav_home"
         android:name="ru.magzyumov.material.ui.main.FirstFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main"/>
+
+    <fragment
+        android:id="@+id/nav_theme"
+        android:name="ru.magzyumov.material.ui.settings.SettingsFragment"
+        android:label="activity_settings"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>

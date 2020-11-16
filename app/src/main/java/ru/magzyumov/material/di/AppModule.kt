@@ -8,8 +8,8 @@ import dagger.Provides
 import ru.magzyumov.material.common.Constants
 import ru.magzyumov.material.common.helpers.PreferenceHelper
 import ru.magzyumov.material.common.helpers.SnackBarHelper
+import ru.magzyumov.material.common.helpers.StorageHelper
 import ru.magzyumov.material.common.helpers.ThemeHelper
-import ru.magzyumov.material.di.services.BaseServices
 import javax.inject.Singleton
 
 
@@ -29,6 +29,12 @@ class AppModule {
     }
 
     @Provides
+    @Singleton
+    fun provideStorageHelper(application: Application): StorageHelper {
+        return StorageHelper(application)
+    }
+
+    @Provides
     fun providePreferenceHelper(sharedPreferences: SharedPreferences): PreferenceHelper {
         return PreferenceHelper(sharedPreferences)
     }
@@ -36,14 +42,5 @@ class AppModule {
     @Provides
     fun provideThemeHelper(preferenceHelper: PreferenceHelper): ThemeHelper {
         return ThemeHelper(preferenceHelper)
-    }
-
-    @Provides
-    fun provideBaseServices(
-        preferenceHelper: PreferenceHelper,
-        snackBarHelper: SnackBarHelper,
-        themeHelper: ThemeHelper
-    ): BaseServices {
-        return BaseServices(preferenceHelper, snackBarHelper, themeHelper)
     }
 }
