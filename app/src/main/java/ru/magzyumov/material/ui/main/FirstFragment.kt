@@ -66,18 +66,15 @@ class FirstFragment: BaseFragment(R.layout.fragment_main), ImageAdapter.Interact
     }
 
     private fun initRecyclerView() {
-        binding.recyclerViewMain.apply {
+        binding.recyclerViewAuto.apply {
             imagesAdapter = ImageAdapter(imagesList, this@FirstFragment)
-            layoutManager = GridLayoutManager(
-                this@FirstFragment.requireContext(),
-                3,
-                GridLayoutManager.VERTICAL,
-                false
-            )
+
             adapter = imagesAdapter
             val swipe = ItemTouchHelper(initSwipeToDelete())
-            swipe.attachToRecyclerView(binding.recyclerViewMain)
+            swipe.attachToRecyclerView(binding.recyclerViewAuto)
         }
+
+
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.recyclerViewMain)
     }

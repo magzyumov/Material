@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Common -->
+    <dimen name="common_horizontal_margin">16dp</dimen>
+    <dimen name="common_vertical_margin">16dp</dimen>
+
     <!-- Drawer -->
     <dimen name="drawer_header_horizontal_margin">16dp</dimen>
     <dimen name="drawer_header_vertical_margin">16dp</dimen>
