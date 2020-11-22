@@ -36,6 +36,16 @@
                 android:background="?attr/selectableItemBackground"/>
 
             <ImageButton
+                android:id="@+id/buttonDisLike"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:src="@drawable/ic_dislike"
+                android:layout_gravity="start"
+                android:visibility="gone"
+                android:background="?attr/selectableItemBackground"/>
+
+            <ImageButton
                 android:id="@+id/buttonShare"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"

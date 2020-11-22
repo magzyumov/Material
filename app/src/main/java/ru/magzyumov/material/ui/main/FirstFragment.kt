@@ -4,9 +4,10 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.*
+import android.webkit.RenderProcessGoneDetail
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,8 @@ import ru.magzyumov.material.common.helpers.SnackBarHelper
 import ru.magzyumov.material.common.helpers.StorageHelper
 import ru.magzyumov.material.databinding.FragmentMainBinding
 import ru.magzyumov.material.ui.base.BaseFragment
+import ru.magzyumov.material.ui.main.adapter.FavoriteImageAdapter
+import ru.magzyumov.material.ui.main.adapter.ImageAdapter
 import ru.magzyumov.material.utils.ViewModelProviderFactory
 import javax.inject.Inject
 
@@ -24,7 +27,9 @@ class FirstFragment: BaseFragment(R.layout.fragment_main), ImageAdapter.Interact
     override val binding by viewBinding(FragmentMainBinding::bind)
 
     private var imagesList: List<String> = arrayListOf()
+    private var favoriteImageList: List<String> = arrayListOf()
     private lateinit var imagesAdapter: ImageAdapter
+    private lateinit var favoriteImagesAdapter: FavoriteImageAdapter
     private lateinit var firstViewModel: FirstViewModel
 
     @Inject
@@ -62,7 +67,18 @@ class FirstFragment: BaseFragment(R.layout.fragment_main), ImageAdapter.Interact
                 imagesAdapter.swap(it)
             }
         })
+        firstViewModel.getFavoriteImageLiveData().observe(viewLifecycleOwner, {listOfImages ->
+            listOfImages?.let {
+                favoriteImageList = it
+                favoriteImagesAdapter.swap(it)
+                when(it.size){
+                    0 -> binding.favoriteBlock.visibility = View.GONE
+                    else -> binding.favoriteBlock.visibility = View.VISIBLE
+                }
+            }
+        })
         firstViewModel.updateImageList()
+        firstViewModel.updateFavoriteImageList()
     }
 
     private fun initRecyclerView() {
@@ -72,6 +88,12 @@ class FirstFragment: BaseFragment(R.layout.fragment_main), ImageAdapter.Interact
             adapter = imagesAdapter
             val swipe = ItemTouchHelper(initSwipeToDelete())
             swipe.attachToRecyclerView(binding.recyclerViewAuto)
+        }
+
+        binding.recyclerViewFavorite.apply {
+            favoriteImagesAdapter = FavoriteImageAdapter(favoriteImageList)
+
+            adapter = favoriteImagesAdapter
         }
 
         val snapHelper = PagerSnapHelper()
@@ -99,7 +121,11 @@ class FirstFragment: BaseFragment(R.layout.fragment_main), ImageAdapter.Interact
     }
 
     override fun onLikeSelected(position: Int, item: String) {
+        firstViewModel.insertFavorite(item)
+    }
 
+    override fun onDisLikeSelected(position: Int, item: String) {
+        firstViewModel.deleteFavorite(item)
     }
 
     override fun onShareSelected(item: String) {

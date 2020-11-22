@@ -1,8 +1,7 @@
-package ru.magzyumov.material.ui.main
+package ru.magzyumov.material.ui.main.adapter
 
 
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +10,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.magzyumov.material.R
-import ru.magzyumov.material.databinding.ItemImageBinding
-import java.io.File
+import ru.magzyumov.material.databinding.ItemFavoriteImageBinding
 
 
-class ImageAdapter(
-        images: List<String>,
-        private val interaction: Interaction
-): RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
+class FavoriteImageAdapter(
+        images: List<String>
+): RecyclerView.Adapter<FavoriteImageAdapter.ViewHolder>() {
 
     private var imageList: MutableList<String> = mutableListOf()
 
@@ -27,8 +24,8 @@ class ImageAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_image, parent, false)
-        return ViewHolder(view, interaction)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_favorite_image, parent, false)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int = imageList.size
@@ -47,24 +44,16 @@ class ImageAdapter(
     }
 
     inner class ViewHolder(
-            view: View,
-            private val interaction: Interaction
+            view: View
     ): RecyclerView.ViewHolder(view) {
-        private val binding = ItemImageBinding.bind(view)
+        private val binding = ItemFavoriteImageBinding.bind(view)
 
         fun bind(image: String) {
 
             loadImage(binding.imageViewMain, image)
-
-            binding.buttonShare.setOnClickListener{
-                interaction.onShareSelected(image)
-            }
-
-            binding.buttonLike.setOnClickListener{
-                interaction.onLikeSelected(adapterPosition, image)
-            }
         }
     }
+
 
     inner class DiffCallback(
         private val oldList: List<String>,
@@ -82,11 +71,6 @@ class ImageAdapter(
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldList[oldItemPosition] == newList[newItemPosition]
         }
-    }
-
-    interface Interaction {
-        fun onShareSelected(item: String)
-        fun onLikeSelected(position: Int, item: String)
     }
 
     private fun loadImage(view: ImageView, image: String) {
