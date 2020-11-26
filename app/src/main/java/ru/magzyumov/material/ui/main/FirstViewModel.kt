@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 import ru.magzyumov.material.data.entity.FavouritesEntity
+import ru.magzyumov.material.data.entity.ImageEntity
 import ru.magzyumov.material.repository.ImageRepository
 import javax.inject.Inject
 
@@ -15,12 +16,14 @@ class FirstViewModel @Inject constructor(
         private val repository: ImageRepository
 ): ViewModel() {
 
+    private val image: MutableLiveData<List<ImageEntity>> = MutableLiveData()
+
     private val imageList: MutableLiveData<List<String>> = MutableLiveData()
     private val favoriteImageList: MutableLiveData<List<String>> = MutableLiveData()
 
     fun updateImageList() {
         viewModelScope.launch (Dispatchers.IO){
-            imageList.postValue(repository.getFileList())
+            image.postValue(repository.getAllImages())
         }
     }
 
@@ -38,9 +41,16 @@ class FirstViewModel @Inject constructor(
         }
     }
 
+
     fun getImageLiveData(): LiveData<List<String>> {
         return imageList
     }
+
+
+
+
+
+
 
     fun getFavoriteImageLiveData(): LiveData<List<String>> {
         return favoriteImageList

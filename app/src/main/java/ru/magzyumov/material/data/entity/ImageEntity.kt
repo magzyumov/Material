@@ -6,17 +6,14 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "images")
 class ImageEntity(
+        @ColumnInfo(name = "path")
+        var path: String = ""
+    ) {
 
     @PrimaryKey
     @ColumnInfo(name = "id")
-    var id: Long,
-
-    @ColumnInfo(name = "path")
-    var path: String,
+    var id: Long = 0
 
     @ColumnInfo(name = "liked")
-    var liked: Boolean
-
-    ) {
-
+    var liked: Boolean = false
 }
